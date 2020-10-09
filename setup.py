@@ -1,4 +1,5 @@
 from setuptools import setup, find_packages
-import easylog
+import pyeasylog
 
-setup(name='easylog', version=easylog.__version__, packages=find_packages())
+setup(name=pyeasylog.__appname__, version=pyeasylog.__version__,
+    packages=find_packages())
