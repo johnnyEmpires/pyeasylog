@@ -1,6 +1,7 @@
 # easy-py-log
 
-A minimal and quick setup logging module. Just install, import and initial and you're good to go.
+
+If you don't like setting up your logger each time you make a simple project, here is a quick setup of Python's logging module. Good for day to day scripting. Just install, import and a line of code, your logger will be configured and you're good to go.
 
 
 ## Installation
@@ -13,6 +14,7 @@ pip instal .
 ```
 
 ## Usage
+
 ```python
 import time
 from easylog import module_logger
@@ -34,3 +36,12 @@ if __name__ == '__main__':
     main()
 
 ```
+
+* Logging levels are the same levels from Python [logging module](https://docs.python.org/2/library/logging.html#logging-levels).
+* `Log` folder will be automatically created to contain the logs.
+* If `DEBUG` file exists in the same directory as the main code, DEBUG levels will be shown in the console.
+
+
+## TODO
+
+* log color in console
