@@ -29,10 +29,8 @@ str_fmt = ' '.join(fmt)
 formatter_fh = logging.Formatter('\t'.join(fmt))
 formatter_ch = logging.Formatter('\t'.join((fmt[0], fmt[1], fmt[3] ,fmt[7])))
 
-curr_dir = os.getcwd()
-log_to_dir = os.path.join(curr_dir, 'log')
-
 date_marker = time.strftime('%Y-%m-%d', time.localtime(time.time()))
+log_to_dir = os.path.join(os.getcwd(), 'log')
 os.makedirs(log_to_dir, exist_ok=True)
 log_to_file = os.path.join(log_to_dir, f'app_{date_marker}.log')
 
