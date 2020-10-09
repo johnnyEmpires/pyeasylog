@@ -24,12 +24,15 @@ _log = module_logger(__name__)
 def main():
     try:
         while True:
-            time.sleep(1)
-            _log.info('application is running...')
+            try:
+                time.sleep(1)
+                _log.info('application is running...')
 
-    except Exception as e:
+            except KeyboardInterrupt:
+                _log.info('script has terminated')
+
+    except KeyboardInterrupt:
         _log.info('an error occurred')
-        _log.info('script has terminated')
 
 
 if __name__ == '__main__':
