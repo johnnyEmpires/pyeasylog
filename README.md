@@ -8,8 +8,8 @@ If you don't like setting up your logger each time you make a simple project, he
 
 1. Clone the package or clone the repository.
 2. Change directory where `setup.py` is.
-3. Install using `pip`.
-```shell
+3. Use `pip` to install, mind the dot (.)
+```
 pip instal .
 ```
 
