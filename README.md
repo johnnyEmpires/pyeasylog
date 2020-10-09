@@ -17,7 +17,7 @@ pip instal .
 
 ```python
 import time
-from easylog import module_logger
+from pyeasylog import module_logger
 
 _log = module_logger(__name__)
 
