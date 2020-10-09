@@ -23,7 +23,6 @@ fmt.append('%(threadName)s')
 fmt.append('%(lineno)d') 
 fmt.append('%(funcName)s')
 fmt.append('%(message)s') 
-
 # fmt.append('%(sinfo)s')
 
 str_fmt = ' '.join(fmt)
@@ -40,12 +39,10 @@ log_to_file = os.path.join(log_to_dir, f'app_{date_marker}.log')
 
 class CustomStreamHandler(logging.StreamHandler):
     """
-    
-    Overriding StreamHandler.emit method
+    Customized stream handler to override emit method
     """
 
     def emit(self, record):
-
         try:
             msg = self.format(record)
 
@@ -61,6 +58,7 @@ class CustomStreamHandler(logging.StreamHandler):
         except Exception:
             self.handleError(record)
 
+
 # reimplement emit method for CustomTimedRotatingFileHandler
 CustomTimedRotatingFileHandler = lh.TimedRotatingFileHandler
 CustomTimedRotatingFileHandler.emit = CustomStreamHandler.emit
@@ -69,27 +67,18 @@ CustomTimedRotatingFileHandler.emit = CustomStreamHandler.emit
 def module_logger(logger_name):
     custom_logger = logging.getLogger(logger_name)
     custom_logger.setLevel(logging.DEBUG)
-
-    # file_handler = lh.TimedRotatingFileHandler(filename=log_to_file, when='H',
-    #   interval=1, backupCount=10)
-
     file_handler = CustomTimedRotatingFileHandler(filename=log_to_file, when='H',
     interval=1, backupCount=10)
-
     file_handler.setFormatter(formatter_fh)
     file_handler.setLevel(logging.DEBUG)
     custom_logger.addHandler(file_handler)
-
     console_handler = CustomStreamHandler()
     console_handler.setFormatter(formatter_ch)
 
-
     if DBG:
         console_handler.setLevel(logging.DEBUG)
-        # print(f'from module logger - DBG : {DBG}')
     else:
         console_handler.setLevel(logging.INFO)
-
         custom_logger.addHandler(console_handler)
 
     custom_logger.debug(f'from module logger - DBG : {DBG}')
