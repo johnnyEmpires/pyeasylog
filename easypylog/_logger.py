@@ -6,11 +6,7 @@ import logging.handlers as lh
 import os
 import time
 
-# import conf
-from EventSummary.src import conf
-
-APP_NAME = conf.APP_NAME
-DBG = conf.DBG
+DBG = False
 
 try:
   if os.path.isfile('../DEBUG'):
@@ -43,24 +39,27 @@ log_to_file = os.path.join(log_to_dir, f'app_{date_marker}.log')
 
 
 class CustomStreamHandler(logging.StreamHandler):
-  """Overriding StreamHandler.emit method"""
+    """
+    
+    Overriding StreamHandler.emit method
+    """
 
-  def emit(self, record):
+    def emit(self, record):
 
-    try:
-      msg = self.format(record)
+        try:
+            msg = self.format(record)
 
-      # prevent cmd from complaing when logging latin characters
-      msg = msg.replace('á', 'a')
-      msg = msg.replace('é', 'e')
-      msg = msg.replace('ó', 'o')
+            # prevent cmd from complaing when logging latin characters
+            msg = msg.replace('á', 'a')
+            msg = msg.replace('é', 'e')
+            msg = msg.replace('ó', 'o')
 
-      stream = self.stream
-      stream.write(msg)
-      stream.write(self.terminator)
-      self.flush()
-    except Exception:
-      self.handleError(record)
+            stream = self.stream
+            stream.write(msg)
+            stream.write(self.terminator)
+            self.flush()
+        except Exception:
+            self.handleError(record)
 
 # reimplement emit method for CustomTimedRotatingFileHandler
 CustomTimedRotatingFileHandler = lh.TimedRotatingFileHandler
@@ -68,31 +67,31 @@ CustomTimedRotatingFileHandler.emit = CustomStreamHandler.emit
 
 
 def module_logger(logger_name):
-  custom_logger = logging.getLogger(logger_name)
-  custom_logger.setLevel(logging.DEBUG)
+    custom_logger = logging.getLogger(logger_name)
+    custom_logger.setLevel(logging.DEBUG)
 
-  # file_handler = lh.TimedRotatingFileHandler(filename=log_to_file, when='H',
-  #   interval=1, backupCount=10)
+    # file_handler = lh.TimedRotatingFileHandler(filename=log_to_file, when='H',
+    #   interval=1, backupCount=10)
 
-  file_handler = CustomTimedRotatingFileHandler(filename=log_to_file, when='H',
+    file_handler = CustomTimedRotatingFileHandler(filename=log_to_file, when='H',
     interval=1, backupCount=10)
 
-  file_handler.setFormatter(formatter_fh)
-  file_handler.setLevel(logging.DEBUG)
-  custom_logger.addHandler(file_handler)
+    file_handler.setFormatter(formatter_fh)
+    file_handler.setLevel(logging.DEBUG)
+    custom_logger.addHandler(file_handler)
 
-  console_handler = CustomStreamHandler()
-  console_handler.setFormatter(formatter_ch)
+    console_handler = CustomStreamHandler()
+    console_handler.setFormatter(formatter_ch)
 
-  
-  if DBG:
-    console_handler.setLevel(logging.DEBUG)
-    # print(f'from module logger - DBG : {DBG}')
-  else:
-    console_handler.setLevel(logging.INFO)
 
-  custom_logger.addHandler(console_handler)
-  
-  custom_logger.debug(f'from module logger - DBG : {DBG}')
-  custom_logger.debug(f'logger initiated. saving log in {log_to_file}')
-  return custom_logger
+    if DBG:
+        console_handler.setLevel(logging.DEBUG)
+        # print(f'from module logger - DBG : {DBG}')
+    else:
+        console_handler.setLevel(logging.INFO)
+
+        custom_logger.addHandler(console_handler)
+
+    custom_logger.debug(f'from module logger - DBG : {DBG}')
+    custom_logger.debug(f'logger initiated. saving log in {log_to_file}')
+    return custom_logger
