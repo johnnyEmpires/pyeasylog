@@ -1,4 +1,4 @@
-# easylog
+# pyeasylog
 
 
 If you don't like setting up your logger each time you make a simple project, here is a quick setup of Python's logging module. Good for day to day scripting. Just install, import and a line of code, your logger will be configured and you're good to go.
