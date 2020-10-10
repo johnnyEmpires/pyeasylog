@@ -7,11 +7,10 @@ import os
 import time
 
 DBG = False
-
-try:
-  if os.path.isfile('../DEBUG'):
+if 'DEBUG' in os.listdir(os.getcwd()):
     DBG = True
-except: pass
+    # print('DEBUG mode enabled!')
+
 
 fmt = []
 fmt.append('%(asctime)s')
@@ -77,8 +76,8 @@ def module_logger(logger_name):
         console_handler.setLevel(logging.DEBUG)
     else:
         console_handler.setLevel(logging.INFO)
-        custom_logger.addHandler(console_handler)
-
+    
+    custom_logger.addHandler(console_handler)
     custom_logger.debug(f'from module logger - DBG : {DBG}')
     custom_logger.debug(f'logger initiated. saving log in {log_to_file}')
     return custom_logger
