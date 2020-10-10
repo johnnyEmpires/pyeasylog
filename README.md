@@ -23,20 +23,26 @@ _log = module_logger(__name__)
 
 def main():
     try:
+        counter = 0
+
         while True:
             try:
+                counter += 1
                 time.sleep(1)
-                _log.info('application is running...')
+                _log.info(f'application is running...{counter}')
                 _log.debug('console debug mode')
+
+                if counter > 5:
+                    raise Exception('Test error')
 
             except KeyboardInterrupt:
                 _log.info('script has terminated')
                 _log.debug('debug mode finished')
                 break
 
-    except KeyboardInterrupt:
+    except Exception as e:
         _log.info('an error occurred')
-
+        _log.debug(str(e), exc_info=True)
 
 if __name__ == '__main__':
     main()
@@ -45,7 +51,7 @@ if __name__ == '__main__':
 
 * Logging levels are the same levels from Python [logging module](https://docs.python.org/2/library/logging.html#logging-levels).
 * A `Log` folder will be automatically created to contain the logs.
-* If `DEBUG` file exists in the same directory as the main code, `DEBUG` level will be shown in the console.
+* If `DEBUG` file exists in the same directory as the main code, `DEBUG` level will be displayed in the console.
 
 
 ## TODO
