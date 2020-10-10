@@ -6,8 +6,8 @@ If you don't like setting up your logger each time you make a simple project, he
 
 ## Installation
 
-1. Clone the package or clone the repository.
-2. Change directory where `setup.py` is.
+1. Clone the repository or by downloading it as zip file.
+2. Extract the zip if needed then, change directory into the package.
 3. Use `pip` to install, mind the dot (.)
 ```
 pip instal .
@@ -42,7 +42,7 @@ if __name__ == '__main__':
 
 * Logging levels are the same levels from Python [logging module](https://docs.python.org/2/library/logging.html#logging-levels).
 * A `Log` folder will be automatically created to contain the logs.
-* If `DEBUG` file exists in the same directory as the main code, DEBUG levels will be shown in the console.
+* If `DEBUG` file exists in the same directory as the main code, `DEBUG` level will be shown in the console.
 
 
 ## TODO
