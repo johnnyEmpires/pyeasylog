@@ -27,9 +27,12 @@ def main():
             try:
                 time.sleep(1)
                 _log.info('application is running...')
+                _log.debug('console debug mode')
 
             except KeyboardInterrupt:
                 _log.info('script has terminated')
+                _log.debug('debug mode finished')
+                break
 
     except KeyboardInterrupt:
         _log.info('an error occurred')
