@@ -12,6 +12,13 @@ If you don't like setting up your logger each time you make a simple project, he
 ```
 pip instal .
 ```
+You can also do below installation method. The difference is, only egg file is
+created using below method, mean while the above method creates a copy of the
+package into the site-packages.
+```
+python setup.py install
+```
+
 
 ## Usage
 
