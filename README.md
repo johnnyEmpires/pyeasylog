@@ -2,6 +2,10 @@
 
 
 If you don't like setting up your logger each time you make a simple project, here is a quick setup of Python's logging module. Good for day to day scripting. Just install, import and a line of code, your logger will be configured and you're good to go.
+The logger will rollover after 1 day and keep a backup of 30 items.
+
+
+
 
 
 ## Installation
