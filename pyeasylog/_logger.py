@@ -85,7 +85,30 @@ def module_logger(logger_name):
 
 
 def main():
-    pass
+
+    _log = module_logger(__name__)
+
+    try:
+        counter = 0
+
+        while True:
+            try:
+                counter += 1
+                time.sleep(1)
+                _log.info(f'application is running...{counter}')
+                _log.debug('console debug mode')
+
+                if counter > 5:
+                    raise Exception('Test error')
+
+            except KeyboardInterrupt:
+                _log.info('script has terminated')
+                _log.debug('debug mode finished')
+                break
+
+    except Exception as e:
+        _log.info('an error occurred')
+        _log.debug(str(e), exc_info=True)
 
 
 if __name__ == '__main__':
