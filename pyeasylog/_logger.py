@@ -64,7 +64,7 @@ CustomTimedRotatingFileHandler.emit = CustomStreamHandler.emit
 def module_logger(logger_name):
     custom_logger = logging.getLogger(logger_name)
     custom_logger.setLevel(logging.DEBUG)
-    file_handler = CustomTimedRotatingFileHandler(filename=log_to_file, when='H',
+    file_handler = CustomTimedRotatingFileHandler(filename=log_to_file, when='M',
     interval=1, backupCount=10)
     file_handler.setFormatter(formatter_fh)
     file_handler.setLevel(logging.DEBUG)
@@ -81,3 +81,12 @@ def module_logger(logger_name):
     custom_logger.debug(f'from module logger - DBG : {DBG}')
     custom_logger.debug(f'logger initiated. saving log in {log_to_file}')
     return custom_logger
+
+
+
+def main():
+    pass
+
+
+if __name__ == '__main__':
+    main()
