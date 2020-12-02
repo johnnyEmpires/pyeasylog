@@ -25,6 +25,8 @@ fmt.append('%(message)s')
 # fmt.append('%(sinfo)s')
 
 str_fmt = ' '.join(fmt)
+
+
 formatter_fh = logging.Formatter('\t'.join(fmt))
 formatter_ch = logging.Formatter('\t'.join((fmt[0], fmt[1], fmt[3] ,fmt[7])))
 
@@ -52,24 +54,53 @@ class CustomStreamHandler(logging.StreamHandler):
             stream.write(msg)
             stream.write(self.terminator)
             self.flush()
+
         except Exception:
             self.handleError(record)
 
 
-# reimplement emit method for CustomTimedRotatingFileHandler
-CustomTimedRotatingFileHandler = lh.TimedRotatingFileHandler
-CustomTimedRotatingFileHandler.emit = CustomStreamHandler.emit
+class CustomTRH(lh.TimedRotatingFileHandler):
+    """
+    Re-implement emit
+    """
+
+    def emit(self, record):
+        """
+        emit implementation:
+
+        TimedRotatingFileHandler.emit
+        BaseRotatingHandler.emit
+        FileHandler.emit
+        StreamHandler.emit
+        """
+
+        try:
+            # based from StreamHandler
+            if self.stream is None:
+                self.stream = self._open()
+
+            # based from BaseRotatingHandler
+            if self.shouldRollover(record):
+                self.doRollover()
+
+            CustomStreamHandler.emit(self, record)
+
+        except Exception:
+            self.handleError(record)
+
 
 
 def module_logger(logger_name):
     custom_logger = logging.getLogger(logger_name)
+
     custom_logger.setLevel(logging.DEBUG)
-    file_handler = CustomTimedRotatingFileHandler(filename=log_to_file, when='M',
-    interval=1, backupCount=10)
+    file_handler = CustomTRH(filename=log_to_file, when='D',
+    interval=1, backupCount=30)
     file_handler.setFormatter(formatter_fh)
     file_handler.setLevel(logging.DEBUG)
     custom_logger.addHandler(file_handler)
     console_handler = CustomStreamHandler()
+    # console_handler = logging.StreamHandler()
     console_handler.setFormatter(formatter_ch)
 
     if DBG:
@@ -80,6 +111,7 @@ def module_logger(logger_name):
     custom_logger.addHandler(console_handler)
     custom_logger.debug(f'from module logger - DBG : {DBG}')
     custom_logger.debug(f'logger initiated. saving log in {log_to_file}')
+
     return custom_logger
 
 
@@ -98,7 +130,7 @@ def main():
                 _log.info(f'application is running...{counter}')
                 _log.debug('console debug mode')
 
-                if counter > 5:
+                if counter > 5000000:
                     raise Exception('Test error')
 
             except KeyboardInterrupt:
