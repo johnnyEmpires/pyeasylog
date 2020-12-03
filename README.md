@@ -2,7 +2,7 @@
 
 
 If you don't like setting up your logger each time you make a simple project, here is a quick setup of Python's logging module. Good for day to day scripting. Just install, import and a line of code, your logger will be configured and you're good to go.
-The logger will rollover after 1 day and keep a backup of 30 items.
+The logger will rollover after 1 day and keep a backup of 30 records.
 
 
 
@@ -43,7 +43,7 @@ def main():
                 _log.info(f'application is running...{counter}')
                 _log.debug('console debug mode')
 
-                if counter > 5:
+                if counter > 10:
                     raise Exception('Test error')
 
             except KeyboardInterrupt:

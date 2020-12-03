@@ -130,7 +130,7 @@ def main():
                 _log.info(f'application is running...{counter}')
                 _log.debug('console debug mode')
 
-                if counter > 5000000:
+                if counter > 5:
                     raise Exception('Test error')
 
             except KeyboardInterrupt:
