@@ -61,33 +61,30 @@ class CustomStreamHandler(logging.StreamHandler):
 
 class CustomTRH(lh.TimedRotatingFileHandler):
     """
-    Re-implement emit
+    Reimplement emit
     """
 
     def emit(self, record):
         """
-        emit implementation:
-
-        TimedRotatingFileHandler.emit
-        BaseRotatingHandler.emit
-        FileHandler.emit
+        emit implementation MRO:
+        -----------------------
         StreamHandler.emit
+        FileHandler.emit
+        BaseRotatingHandler.emit
+        TimedRotatingFileHandler.emit
+        CustomTRH.emit
+        CustomStreamHandler.emit
         """
-
         try:
             # based from StreamHandler
             if self.stream is None:
                 self.stream = self._open()
-
             # based from BaseRotatingHandler
             if self.shouldRollover(record):
                 self.doRollover()
-
             CustomStreamHandler.emit(self, record)
-
         except Exception:
             self.handleError(record)
-
 
 
 def module_logger(logger_name):
