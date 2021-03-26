@@ -10,6 +10,7 @@ setup(name='basiclog',
     description="a preconfigured logger",
     long_description=long_description,
     long_description_content_type="text/markdown",
+    license_files = ('LICENSE',),
     url="https://github.com/johnnyEmpires/pyeasylog",
     python_requires='>=3.6'
     )
