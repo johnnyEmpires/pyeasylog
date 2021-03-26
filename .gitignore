@@ -2,7 +2,6 @@ MANIFEST
 __pycache__/
 *.egg-info/
 build/
-dist/
 logs/
 log/
 *.egg
