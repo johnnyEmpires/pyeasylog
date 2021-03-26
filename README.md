@@ -1,11 +1,6 @@
-# pyeasylog
+# basiclog
 
-
-If you don't like setting up your logger each time you make a simple project, here is a quick setup of Python's logging module. Good for day to day scripting. Just install, import and a line of code, your logger will be configured and you're good to go.
-The logger will rollover after 1 day and keep a backup of 30 records.
-
-
-
+a simple logger setup...no drama, take it or leave it. Just note that the logger will rollover after 1 day and keep a backup of 30 records.
 
 
 ## Installation
@@ -63,8 +58,3 @@ if __name__ == '__main__':
 * Logging levels are the same levels from Python [logging module](https://docs.python.org/2/library/logging.html#logging-levels).
 * A `Log` folder will be automatically created to contain the logs.
 * If `DEBUG` file exists in the same directory as the main code, `DEBUG` level will be displayed in the console.
-
-
-## TODO
-
-* log color in console
