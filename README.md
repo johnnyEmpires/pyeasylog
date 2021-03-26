@@ -5,6 +5,8 @@ a simple logger setup...no drama, take it or leave it.
 
 ## Installation
 
+**Option 1**
+
 1. Clone the repository or by downloading it as zip file.
 2. Extract the zip if needed then, change directory into the package.
 3. Use `pip` to install, mind the dot (.)
@@ -18,6 +20,29 @@ package into the site-packages.
 python setup.py install
 ```
 
+**Option 2**
+
+Download wheel and use `pip`. Wheel is available in [here](https://github.com/johnnyEmpires/basiclog/releases/download/v0.2.3/basiclog-0.1.3-py3-none-any.whl).
+
+```shell
+pip install basiclog-0.1.3-py3-none-any.whl
+```
+
+**Option 3**
+
+You can add the github link into the `requirements.txt` file.
+
+```
+somePackage==1.0.0
+anotherPackage==1.0.0
+-e git+https://github.com/johnnyEmpires/basiclog.git#egg=basiclog
+```
+
+Then
+
+```
+pip install -r requirements.txt --no-cache
+```
 
 ## Usage
 
