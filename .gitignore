@@ -1,7 +1,9 @@
 MANIFEST
 __pycache__/
+env/
 *.egg-info/
 build/
 logs/
 log/
+*.egg
 *.log
