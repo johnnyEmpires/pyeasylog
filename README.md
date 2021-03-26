@@ -23,7 +23,7 @@ python setup.py install
 
 ```python
 import time
-from pyeasylog import module_logger
+from basiclog import module_logger
 
 _log = module_logger(__name__)
 
