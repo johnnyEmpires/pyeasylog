@@ -1,11 +1,10 @@
 from setuptools import setup, find_packages
-import pyeasylog
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
-setup(name=pyeasylog.__appname__,
-    version=pyeasylog.__version__,
+setup(name='basiclog',
+    version='0.1.3',
     packages=find_packages(),
     author="john imperial",
     description="a preconfigured logger",
