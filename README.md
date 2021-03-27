@@ -22,7 +22,7 @@ python setup.py install
 
 **Option 2**
 
-Download wheel and use `pip`. Wheel is available in [here](https://github.com/johnnyEmpires/basiclog/releases/download/v0.2.3/basiclog-0.1.3-py3-none-any.whl).
+Download wheel and use `pip`. Check [releases](https://github.com/johnnyEmpires/basiclog/releases) and select the latest module wheel.
 
 ```shell
 pip install basiclog-0.1.3-py3-none-any.whl
