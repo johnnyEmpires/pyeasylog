@@ -4,7 +4,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setup(name='basiclog',
-    version='0.1.3',
+    version='0.2.4',
     packages=find_packages(),
     author="john imperial",
     description="a preconfigured logger",
