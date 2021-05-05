@@ -11,7 +11,7 @@ a simple logger setup...no drama, take it or leave it.
 2. Extract the zip if needed then, change directory into the package.
 3. Use `pip` to install, mind the dot (.)
 ```
-pip instal .
+pip install .
 ```
 You can also do below installation method. The difference is, only egg file is
 created using below method, mean while the above method creates a copy of the
